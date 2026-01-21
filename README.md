@@ -13,8 +13,8 @@ Simple **REST API** for a car rental service built with **FastAPI**.
 Create and activate a virtual environment:
 
 ```bash
-python3.12 -m venv .venv
-source .venv/bin/activate
+python3.12 -m venv venv
+source venv/bin/activate
 ```
 
 Install dependencies:
