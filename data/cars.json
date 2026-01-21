@@ -1,0 +1,8 @@
+[
+    { "id": "car_1", "brand": "Toyota", "model": "Corolla" },
+    { "id": "car_2", "brand": "Seat", "model": "Ibiza" },
+    { "id": "car_3", "brand": "Renault", "model": "Clio" },
+    { "id": "car_4", "brand": "Volkswagen", "model": "Golf" },
+    { "id": "car_5", "brand": "Peugeot", "model": "208" }
+]
+  
