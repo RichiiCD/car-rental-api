@@ -165,6 +165,16 @@ docker compose up --build
 
 In this mode, bookings are persisted in the host `./data/bookings.json` file.
 
+## Design choices (brief)
+
+- FastAPI + Pydantic: chosen for fast development, automatic request validation, and OpenAPI docs (/docs) with minimal boilerplate.
+- File-based JSON storage: bookings and cars are persisted as JSON files to match the challenge constraints and keep the solution simple and transparent.
+- Configurable DATA_DIR: the storage location can be overridden via an environment variable to support isolated tests (temporary directory) and Docker volume mounts.
+- Date handling: API accepts ISO dates (YYYY-MM-DD) and stores booking dates as stringss in JSON for consistency and portability.
+- Atomic writes: writes are done using a temporary file + replace to reduce the chance of corrupted JSON on partial writes.
+- Error semantics: returns 404 when a car does not exist, 409 for booking conflicts, and relies on FastAPI validation (422) for invalid input.
+- Testing approach: tests use a temporary data directory to avoid touching real data and to make runs deterministic.
+
 ## Notes
 
 This project uses **FastAPI + Pydantic** for request/response validation and automatic OpenAPI documentation.
