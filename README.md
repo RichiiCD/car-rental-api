@@ -118,3 +118,53 @@ Run tests:
 ```bash
 pytest -q
 ```
+
+## Docker
+
+### Build and run (Docker only)
+
+Build the image:
+
+```bash
+docker build -t car-rental-api .
+```
+
+Run the container:
+
+```bash
+docker run --rm -p 8000:8000 car-rental-api
+```
+
+Open:
+
+- http://127.0.0.1:8000/docs
+
+> Note: This mode uses the container filesystem. Bookings will be lost when the container stops.
+
+### Run with persistence (Docker Compose)
+
+Create `docker-compose.yml`:
+
+```yaml
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data
+    environment:
+      - DATA_DIR=/app/data
+```
+
+Run:
+
+```bash
+docker compose up --build
+```
+
+In this mode, bookings are persisted in the host `./data/bookings.json` file.
+
+## Notes
+
+This project uses **FastAPI + Pydantic** for request/response validation and automatic OpenAPI documentation.
